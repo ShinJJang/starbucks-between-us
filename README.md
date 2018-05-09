@@ -6,6 +6,7 @@
 
 - [ ] Jupyter로 기본 아이디어 검증
 - [ ] 스타벅스 점포 API 분석, 저장
+- [ ] 주소를 좌표계로 바꿔주는 API 확인과 API Key 발급
 - [ ] 적정 기술로 Application 구현
 
 ## Ideation
@@ -29,13 +30,13 @@
 
 ## Troubleshoot
 
-1. 단순히 원그려서 intersection 구하려 햇더니 엄청 큰 구는 휘는거 고려해야 됨
-    - https://en.wikipedia.org/wiki/Haversine_formula
+1. 단순히 원그려서 intersection 구하려 했더니 엄청 큰 구는 휘는거 고려해야 됨
+    - [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula)
     - 구의 표면에서 원은 타원이 됨
-    - 위 문제의 파이썬에서 [방법](https://stackoverflow.com/questions/27431528/find-the-intersection-between-two-geographical-data-points)
+    - 위 문제의 파이썬에서 [구현 방법](https://stackoverflow.com/questions/27431528/find-the-intersection-between-two-geographical-data-points)
     - 그런데 shapely, pyproj 설치에서 배보다 배꼽이 커짐(3.6 미지원, C++ build tool 2014 등, 배포 환경 만들기가 번거로울 듯함)
     - anaconda에서 python 3.4 환경 설치가 느림 https://github.com/conda/conda/issues/1700 
-3. 지인의 제안에 따라 문제를 간단히 생각하기로 함
+2. 지인의 제안에 따라 문제를 간단히 생각하기로 함
     - 너무 엄하게 같은 거리 지점이 아닌, 무게 중심에서의 원을 그려 근처 스타벅스를 찾기
     - (가정) 시군구 내에서 그리는 원은 `Haversine_formula`를 고려하지 않더라도 큰 오차가 없을 것. 어디까지나 가벼운 인사이트를 주기 위함
 
@@ -46,7 +47,12 @@
     - 리저브
     - 드라이브 스루
     - 지하철 인접
+3. 무게 중심 근처의 스타벅스만 필터링하여 최적화(folium에서 스타벅스 지점의 서울 지점만 모두 표시해도 느려짐)
 
 ## 더 하면 좋은거
 
 - 브라우저에서 현재 위치 정보 제공
+
+## Ref
+
+- [한국 주요 좌표계 EPSG코드 및 proj4 인자 정리](http://www.osgeo.kr/17)
